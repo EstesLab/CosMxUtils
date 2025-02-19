@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/nvhpc:25.1-devel-cuda_multi-ubuntu24.04
+FROM nvcr.io/nvidia/cuda-dl-base:25.01-cuda12.8-devel-ubuntu24.04
 #trying a rather new nvidia base image, but we can probably go lighter if we need to.
 
 ARG DEBIAN_FRONTEND=noninteractive
