@@ -1,9 +1,10 @@
-FROM nvcr.io/nvidia/nvhpc:25.1-devel-cuda_multi-ubuntu24.04
+FROM nvcr.io/nvidia/cuda-dl-base:25.01-cuda12.8-devel-ubuntu24.04
 #trying a rather new nvidia base image, but we can probably go lighter if we need to.
-
+#image size ~6GB
 ARG DEBIAN_FRONTEND=noninteractive
 
-## grab an OpenMM installation
+#numpy==1.26.4 necessary because numpy 2.0 breaks like half of all python packages.
+#the nanostring napari-cosmx wheel is probably going to need updating eventually (written 2/19/2025)
 RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
@@ -26,6 +27,8 @@ RUN apt-get update && apt-get install -y \
     ./configure --prefix=/Napari_Python && \
     make && \
     make install && \
+    /Napari_Python/bin/python3.9 -m pip install --upgrade pip && \
+    /Napari_Python/bin/pip3 install numpy==1.26.4 && \
     /Napari_Python/bin/pip3 install "napari[all]" && \
     wget https://github.com/Nanostring-Biostats/CosMx-Analysis-Scratch-Space/raw/refs/heads/Main/assets/napari-cosmx%20releases/napari_CosMx-0.4.17.0-py3-none-any.whl && \
     /Napari_Python/bin/pip3 install napari_CosMx-0.4.17.0-py3-none-any.whl && \
