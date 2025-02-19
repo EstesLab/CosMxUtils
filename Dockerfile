@@ -1,9 +1,8 @@
 FROM nvcr.io/nvidia/cuda-dl-base:25.01-cuda12.8-devel-ubuntu24.04
 #trying a rather new nvidia base image, but we can probably go lighter if we need to.
-
+#image size ~6GB
 ARG DEBIAN_FRONTEND=noninteractive
 
-## grab an OpenMM installation
 RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
