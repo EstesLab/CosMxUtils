@@ -1,0 +1,49 @@
+#!/usr/bin/expect
+
+set timeout -1
+set server "na.export.atomx.nanostring.com"
+set username_file "$env(HOME)/.stephenUsername"
+set password_file "$env(HOME)/.stephenPassword"
+
+#read stephen's password from a restricted file
+set username [exec cat $username_file]
+set password [exec cat $password_file]
+
+#check if a subdirectory was provided. if not, just pull everything stephen has exported in the last two weeks
+if {$argc > 0} {
+        set subdirectory [lindex $argv 0]
+} else {
+        set subdirectory ""
+}
+
+#start sftp
+spawn sftp $username@$server
+expect "password:"
+send "$password\r"
+
+puts "SFTP connection established!"
+
+#cd to subdirectory if provided
+if {$subdirectory ne ""} {
+        expect "sftp>"
+        send "cd $subdirectory\r"
+}
+
+#get everything
+set local_path [exec pwd]
+puts "Downloading files to: $local_path..."
+
+if {$argc > 0} {
+        puts "Downloading files from: $subdirectory to: $local_path..."
+} else {
+        puts "Downloading files to: $local_path..."
+}
+
+expect "sftp>"
+send "get -r . $local_path\r"
+
+#exit
+expect "sftp>"
+send "bye\r"
+
+expect eof
