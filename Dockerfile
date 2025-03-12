@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     uuid-dev \
     libgpgme11-dev \
+    libgl1-mesa-dev \
     squashfs-tools \
     libseccomp-dev \
     pkg-config \
@@ -33,3 +34,6 @@ RUN apt-get update && apt-get install -y \
     wget https://github.com/Nanostring-Biostats/CosMx-Analysis-Scratch-Space/raw/refs/heads/Main/assets/napari-cosmx%20releases/napari_CosMx-0.4.17.0-py3-none-any.whl && \
     /Napari_Python/bin/pip3 install napari_CosMx-0.4.17.0-py3-none-any.whl && \
     /Napari_Python/bin/pip3 freeze | grep "napari_CosMx"
+
+#add Napari_Python to path to find the stitching executables
+ENV PATH "$PATH:/Napari_Python/bin/"
