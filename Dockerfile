@@ -13,13 +13,22 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-dev \
     squashfs-tools \
     libseccomp-dev \
+    libffi-dev \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
     pkg-config \
     git-all \
     wget \
     libbz2-dev \
     zlib1g-dev \
     python3-dev \
-    libffi-dev && \
+    r-base r-base-dev && \
+    Rscript -e "install.packages(c('remotes', 'devtools', 'BiocManager', 'Seurat', 'data.table'), ask = FALSE, upgrade = 'always')" && \
     mkdir /Napari_Python && \
     cd /Napari_Python && \
     wget http://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz && \
