@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     libbz2-dev \
     zlib1g-dev \
     python3-dev \
-    r-base r-base-dev && \
+    r-base && \
     Rscript -e "install.packages(c('remotes', 'devtools', 'BiocManager', 'Seurat', 'data.table'), ask = FALSE, upgrade = 'always')" && \
     mkdir /Napari_Python && \
     cd /Napari_Python && \
