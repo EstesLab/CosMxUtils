@@ -7,12 +7,23 @@ ARG DEBIAN_FRONTEND=noninteractive
 #the nanostring napari-cosmx wheel is probably going to need updating eventually (written 2/19/2025)
 RUN apt-get update && apt-get install -y \
     build-essential \
+    g++ \
+    libpthread-stubs0-dev \
+    libcurl4-openssl-dev \
     libssl-dev \
     uuid-dev \
+    libxml2-dev \
     libgpgme11-dev \
     libgl1-mesa-dev \
     squashfs-tools \
     libseccomp-dev \
+    libsqlite3-dev \
+    pkg-config \
+    git-all \
+    wget \
+    libbz2-dev \
+    zlib1g-dev \
+    python3-dev \
     libffi-dev \
     libfontconfig1-dev \
     libharfbuzz-dev \
@@ -20,17 +31,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libpng-dev \
     libtiff5-dev \
-    libjpeg-dev \
-    libcurl4-openssl-dev \
-    libxml2-dev \
-    pkg-config \
-    git-all \
-    wget \
-    libbz2-dev \
-    zlib1g-dev \
-    python3-dev \
-    r-base && \
-    Rscript -e "install.packages(c('remotes', 'devtools', 'BiocManager', 'Seurat', 'data.table'), ask = FALSE, upgrade = 'always')" && \
+    libjpeg-dev && \
     mkdir /Napari_Python && \
     cd /Napari_Python && \
     wget http://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz && \
@@ -48,3 +49,10 @@ RUN apt-get update && apt-get install -y \
 
 #add Napari_Python to path to find the stitching executables
 ENV PATH "$PATH:/Napari_Python/bin/"
+
+#add R installation
+RUN apt-get update && apt-get install -y r-base r-base-dev && \
+    Rscript -e "install.packages(c('remotes', 'devtools', 'BiocManager', 'Seurat', 'data.table'), ask = FALSE, upgrade = 'always')" 
+
+#validate R installation
+RUN which R && which Rscript && R --version && Rscript --version
