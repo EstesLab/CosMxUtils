@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libtiff5-dev \
     libjpeg-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
     pkg-config \
     git-all \
     wget \
