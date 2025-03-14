@@ -44,7 +44,7 @@ RUN apt-get update && apt-get install -y \
     /Napari_Python/bin/pip3 install numpy==1.26.4 && \
     /Napari_Python/bin/pip3 install "napari[all]" && \
     wget https://github.com/Nanostring-Biostats/CosMx-Analysis-Scratch-Space/raw/refs/heads/Main/assets/napari-cosmx%20releases/napari_CosMx-0.4.17.3-py3-none-any.whl && \
-    /Napari_Python/bin/pip3 install napari_CosMx-0.4.17.0-py3-none-any.whl && \
+    /Napari_Python/bin/pip3 install napari_CosMx-0.4.17.3-py3-none-any.whl && \
     /Napari_Python/bin/pip3 freeze | grep "napari_CosMx"
 
 #add Napari_Python to path to find the stitching executables
