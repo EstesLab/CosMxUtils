@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev && \
     mkdir /Napari_Python && \
     cd /Napari_Python && \
-    wget http://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz && \
+    wget http://www.python.org/ftp/python/3.9.2/Python-3.9.2.tgz && \
     tar -zxvf Python-3.9.0.tgz && \
     cd Python-3.9.0 && \
     ./configure --prefix=/Napari_Python && \
