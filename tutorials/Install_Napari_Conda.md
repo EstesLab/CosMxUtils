@@ -73,5 +73,4 @@ If you need to reactivate the environment later, use:
 
     conda activate /Path/to/your/env/anaconda3/napari-env
 
-=======================================
-End of Setup Instructions
+
