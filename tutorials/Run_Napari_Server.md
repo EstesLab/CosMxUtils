@@ -117,6 +117,3 @@ napari
 
 Napari should now launch within your VNC desktop session.
 
----
-
-End of Setup Instructions.
