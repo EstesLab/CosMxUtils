@@ -33,6 +33,7 @@ Each user (or the administrator for a shared session) needs to set a VNC passwor
 
 vncpasswd
 
+You’ll be prompted to enter and verify a password. You can also set an optional view-only password if desired.
 
 ### b. Install a Desktop Environment
 
