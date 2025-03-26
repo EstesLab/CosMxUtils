@@ -23,13 +23,24 @@ ssh username@monkeydo.ohsu.edu
 
 ## 2. Set Up the VNC Server on the Remote Machine
 
-### a. Install a Desktop Environment
+### a. Install a Tiger VNC server
+
+sudo yum install tigervnc-server
+
+#### Set the VNC Password
+
+Each user (or the administrator for a shared session) needs to set a VNC password. Run the following command (as the user who will run the VNC server):
+
+vncpasswd
+
+
+### b. Install a Desktop Environment
 
 If this is your first time, install a full desktop environment. For example, to install XFCE on CentOS 7, run:
 
 sudo yum groupinstall "Xfce"
 
-### b. Configure VNC Startup
+### c. Configure VNC Startup
 
 Edit the ~/.vnc/xstartup file on the remote machine. Use the following content:
 
@@ -51,7 +62,7 @@ Make sure the file is executable:
 
 chmod +x ~/.vnc/xstartup
 
-### c. Start the VNC Server
+### d. Start the VNC Server
 
 Launch the VNC server on display :2 (which corresponds to port 5902):
 
