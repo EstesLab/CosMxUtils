@@ -107,7 +107,7 @@ vncserver -kill :2
 In a new terminal on your local machine, create an SSH tunnel to forward the VNC port:
 
 ```bash
-ssh -N -L 5902:127.0.0.1:5902 monkeydo.ohsu.edu
+ssh -N -L 5902:127.0.0.1:5902 username@monkeydo.ohsu.edu
 ```
 
 Note: The ":2" in the VNC server setup means the VNC server is running on port 5902 (5900 + 2).
