@@ -27,7 +27,7 @@ ssh username@monkeydo.ohsu.edu
 
 ### a. First Time Setting up
 
-if this you have already done these steps, skip to step f. !!
+if  you have already done these "first time setting up" steps, skip to step f. !!
 
 ### b. Install then activate Conda env for Napari
 
