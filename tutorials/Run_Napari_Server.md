@@ -41,6 +41,8 @@ conda activate /path/to/your/napari-env
 
 ```bash
 sudo yum install tigervnc-server
+
+sudo yum install mousepad # a simple GUI note pad to edit text files 
 ```
 
 #### Set the VNC Password
