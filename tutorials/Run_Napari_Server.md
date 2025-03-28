@@ -13,10 +13,13 @@ Host monkeydo.ohsu.edu
     ForwardX11 yes
     ForwardX11Trusted yes
 
+```
+
 Replace "username" with your actual username.
 
 Then, from your local machine, log in to monkeydo:
 
+```bash
 ssh username@monkeydo.ohsu.edu
 ```
 
