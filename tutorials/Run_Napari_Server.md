@@ -2,12 +2,12 @@
 
 This guide explains how to configure SSH and VNC to access OHSU servers, launch a full desktop environment, and run Napari remotely.
 
----
 
 ## 1. Configure SSH on Your Local Machine
 
 Edit your ~/.ssh/config file and add the following for access to OHSU servers:
 
+---bash
 Host monkeydo.ohsu.edu
     ProxyJump username@acc.ohsu.edu
     ForwardX11 yes
@@ -18,7 +18,6 @@ Replace "username" with your actual username.
 Then, from your local machine, log in to monkeydo:
 
 ssh username@monkeydo.ohsu.edu
-
 ---
 
 ## 2. Set Up the VNC Server on the Remote Machine
