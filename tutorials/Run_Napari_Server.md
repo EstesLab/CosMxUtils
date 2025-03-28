@@ -23,9 +23,21 @@ Then, from your local machine, log in to monkeydo:
 ssh username@monkeydo.ohsu.edu
 ```
 
-## 2. Set Up the VNC Server on the Remote Machine
+## 2.  VNC Server on the Remote Machine
 
-### a. Install a Tiger VNC server
+### a. First Time Setting up
+
+if this you have already done these steps, skip to step f. !!
+
+### b. Install then activate Conda env for Napari
+
+Make sure you activate your appropriate conda environment (see Conda Napari tutorial). 
+
+```bash
+conda activate /path/to/your/napari-env
+```
+
+### c. Install a Tiger VNC server
 
 ```bash
 sudo yum install tigervnc-server
@@ -41,7 +53,7 @@ vncpasswd
 
 You’ll be prompted to enter and verify a password. You can also set an optional view-only password if desired.
 
-### b. Install a Desktop Environment
+### d. Install a Desktop Environment
 
 If this is your first time, install a full desktop environment. For example, to install XFCE on CentOS 7, run:
 
@@ -49,7 +61,7 @@ If this is your first time, install a full desktop environment. For example, to 
 sudo yum groupinstall "Xfce"
 ```
 
-### c. Configure VNC Startup
+### e. Configure VNC Startup
 
 Edit the ~/.vnc/xstartup file on the remote machine. Use the following content:
 
@@ -75,7 +87,7 @@ Make sure the xstartup file is executable:
 chmod +x ~/.vnc/xstartup
 ```
 
-### d. Start the VNC Server
+### f. Start the VNC Server
 
 Launch the VNC server on display :2 (which corresponds to port 5902):
 
