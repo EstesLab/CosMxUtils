@@ -1,0 +1,13 @@
+name: napari-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - napari
+  - numpy=1.26.4
+  - mesa  # if you need it
+  - qt
+  - pyqt
+  - qtpy
+  - pyside2
+  - superqt
