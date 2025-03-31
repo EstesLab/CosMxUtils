@@ -25,7 +25,7 @@ if [ "$2" == "--overwrite" ]; then
 fi
 
 # Path to the R script (adjust this if needed)
-RSCRIPT="./Myscript.R"
+RSCRIPT="./Split_MultiSamp_CosMxSeurat.R"
 
 # Check if the R script exists
 if [ ! -f "$RSCRIPT" ]; then
