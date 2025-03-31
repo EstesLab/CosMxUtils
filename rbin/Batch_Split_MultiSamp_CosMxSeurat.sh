@@ -7,11 +7,12 @@
 # This script iterates over each subdirectory in the given root_directory.
 # For each subdirectory, it checks if a modified RDS file (matching "seuratObject*_Mod.RDS")
 # exists. If it exists and the "--overwrite" flag is not provided, it skips that folder.
-# Otherwise, it calls the R script (Myscript.R) with the folder as an argument.
+# Otherwise, it calls the R script (Split_MultiSamp_CosMxSeurat.R) with the folder as an argument.
 #
 # NOTE:
-#   - Make sure "Myscript.R" is in the same directory as this script (or update the RSCRIPT path).
-#   - Ensure the R script is executable (or call it via "Rscript Myscript.R ...").
+#   = Make sure to chmod +x Batch_Split_MultiSamp_CosMxSeurat.sh
+#   - Make sure "Split_MultiSamp_CosMxSeurat.R" is in the same directory as this script (or update the RSCRIPT path).
+#   - Ensure the R script is executable (or call it via "Rscript Split_MultiSamp_CosMxSeurat.R ...").
 
 if [ "$#" -lt 1 ]; then
     echo "Usage: $0 root_directory [--overwrite]"
