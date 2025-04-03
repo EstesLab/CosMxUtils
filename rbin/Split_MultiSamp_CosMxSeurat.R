@@ -97,6 +97,15 @@ rownames(metadata) <- metadata$cell_ID
 # Add the metadata to the Seurat object
 seuratObj <- AddMetaData(seuratObj, metadata = metadata)
 
+
+#this fixes an issue where with preprocessing steps line dimreduc with PCA cant be done with less cells than requested comps
+tissue_counts <- table(seuratObj$Tissue)
+groups_to_remove <- names(tissue_counts[tissue_counts < 75]) #arbiturary number to avoid processing errors 
+groups_to_keep <- setdiff(names(table(seuratObj$Tissue)), groups_to_remove) 
+seuratObj <- subset(seuratObj, Tissue %in% groups_to_keep)
+
+
+
 # -------------------------------
 # 6. Write Output Files
 # -------------------------------
