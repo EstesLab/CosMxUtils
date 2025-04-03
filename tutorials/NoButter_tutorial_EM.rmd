@@ -1,0 +1,120 @@
+---
+title: "NoButter: A Basic Vignette"
+author1: "Eisa Mahyari"
+lab: "Estes"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Introduction
+
+NoButter is an R package designed to reduce transcript dispersion in CosMx Spatial Molecular Imaging (SMI) data. In imaging-based spatial transcriptomics, transcripts can disperse outside of cell boundaries across different optical z-slices, leading to technical noise. NoButter identifies these noisy z-slices and filters out transcripts accordingly, thereby improving data quality for downstream analysis.
+
+This vignette provides a basic workflow to install, preprocess, and visualize spatial transcriptomics data using NoButter.
+
+# Installation
+
+Install NoButter directly from GitHub using the devtools package.
+
+```{r install, eval=FALSE}
+# Install devtools if not already installed
+install.packages("devtools")
+# Install NoButter from GitHub
+devtools::install_github("cancerbioinformatics/NoButter")
+```
+# Loading Required Packages
+
+Load NoButter and other necessary libraries.
+
+```{r setup}
+library(NoButter)
+library(ggplot2)
+library(dplyr)
+```
+# Data Preparation
+
+NoButter works with raw transcript data exported from the AtoMx Spatial Informatics Platform (SIP). In this example, we assume you have a CSV file (raw_transcripts.csv) containing your raw transcript data.
+
+```{r data-import}
+# Replace with your actual file path
+raw_transcripts <- read.csv("path/to/raw_transcripts.csv")
+```
+
+# Visualizing Transcript Distribution by Z-Stack
+
+Use the ZPlot function to visualize transcript distributions across z-stacks for selected fields of view (FOVs).
+
+```{r zplot, fig.width=8, fig.height=6}
+# Example: Visualize FOVs 1 to 10
+plots <- ZPlot(raw_transcripts, fovs = 1:10)
+# Display the first plot as an example
+print(plots[[1]])
+
+```
+
+# Creating a Heatmap of Z-Stack Distribution
+
+Generate a heatmap to view transcript distribution across z-stacks for each FOV using VisualizeZStackDistribution.
+
+```{r heatmap, fig.width=10, fig.height=8}
+# Example usage (set binarised to TRUE if you wish)
+heatmap_plot <- VisualizeZStackDistribution(raw_transcripts, binarised = FALSE)
+print(heatmap_plot)
+```
+# Preparing the Gene Expression Matrix
+
+Filter the raw transcript data to create a clean gene expression (GEX) matrix. Here we keep only specific z-stacks (e.g., 1, 2, and 3).
+
+```{r prepare-gex}
+gex_matrix <- PrepareGEXMatrix(raw_transcripts, z_stacks = c(1, 2, 3))
+head(gex_matrix)
+```
+
+# Updating Metadata and Polygons
+
+Update your metadata (and optionally polygons) to match the cleaned GEX data. Replace the file paths with your actual metadata and polygons file paths if you wish to save updated flat files.
+
+```{r update-metadata}
+# Example usage with file paths (set save_flat_files to TRUE to save updated files)
+updated_data <- UpdateMetadataAndPolygons(clean_GEX = gex_matrix,
+                                            metadata = "path/to/metadata.csv",
+                                            polygons = "path/to/polygons.csv",
+                                            save_flat_files = FALSE)
+```
+# Plotting Transcripts for Specific FOVs
+
+Generate scatter plots of transcript coordinates for specific FOVs using PlotTranscriptsByFOV.
+
+```{r plot-fov, fig.width=8, fig.height=6}
+# Example: Plot transcripts for FOVs "FOV1", "FOV2", and "FOV3"
+PlotTranscriptsByFOV(raw_transcripts, fov = c("FOV1", "FOV2", "FOV3"))
+```
+# Visualizing Transcript Loss Proportion
+
+Visualize the proportion of transcripts retained or lost across z-stacks using PlotTranscriptLossProportion.
+
+```{r plot-loss, fig.width=10, fig.height=8}
+loss_plot <- PlotTranscriptLossProportion(raw_transcripts, 
+                                          codeclass_filter = "Endogenous", 
+                                          keep_z_stacks = c(1, 2, 3))
+print(loss_plot)
+```
+# Plotting Transcript Counts
+
+Create a bar plot of transcript counts grouped by a specified variable (e.g., FOV) using PlotTranscriptCounts.
+
+```{r plot-counts, fig.width=10, fig.height=8}
+count_plot <- PlotTranscriptCounts(raw_transcripts, group_by = "fov")
+print(count_plot)
+```
+# Plotting Transcripts by Code Class
+
+Visualize transcript counts by code class with PlotTranscriptByCodeClass.
+
+```{r plot-codeclass, fig.width=10, fig.height=8}
+codeclass_plot <- PlotTranscriptByCodeClass(raw_transcripts)
+print(codeclass_plot)
+```
+# Conclusion
+
+This vignette has demonstrated a basic workflow for using the NoButter package to clean and visualize spatial transcriptomics data. For further details and additional functionalities, please consult the NoButter GitHub repository at https://github.com/cancerbioinformatics/NoButter.
